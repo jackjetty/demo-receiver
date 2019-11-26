@@ -1,0 +1,32 @@
+spring:
+    application:
+        name: demo-receiver
+    http:
+        converters:
+            preferred-json-mapper: gson
+server:
+    port: 21001
+    #${random.int[10000,19999]}
+    name: demo-receiver
+
+logging:
+    config: classpath:logback-spring.xml
+    level:
+        root: info
+        com.csde: DEBUG
+
+feign:
+    hystrix:
+        enabled: true
+
+hystrix:
+    threadpool:
+        default:
+            coreSize: 40
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 5000
+
