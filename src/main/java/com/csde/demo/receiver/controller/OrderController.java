@@ -15,7 +15,15 @@ public class OrderController {
 
     @GetMapping(value = "order/{orderId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public OrderVo getOrder(HttpServletRequest request, HttpServletResponse response,@PathVariable(value="orderId",required = false) String orderId){
-
+        log.info("order id :{}",orderId);
+        try
+        {
+            Thread.sleep(6020);    //延时6秒
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
         return OrderVo.builder().id(orderId).status(1).customer("10086").build();
     }
 }
